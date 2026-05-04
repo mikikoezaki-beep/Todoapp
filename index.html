@@ -13,6 +13,11 @@
     <header class="app-header">
       <h1>ToDo</h1>
       <p class="subtitle" id="subtitle"></p>
+      <div class="stats" id="stats" hidden>
+        <div class="stat"><span class="stat-num" id="stat-total">0</span><span class="stat-label">全タスク</span></div>
+        <div class="stat"><span class="stat-num" id="stat-active">0</span><span class="stat-label">未完了</span></div>
+        <div class="stat"><span class="stat-num" id="stat-done">0</span><span class="stat-label">完了</span></div>
+      </div>
     </header>
 
     <form class="input-row" id="form">
@@ -24,8 +29,20 @@
         autocomplete="off"
         required
       >
+      <select id="priority" aria-label="優先度">
+        <option value="high">🔴 高</option>
+        <option value="medium" selected>🟡 中</option>
+        <option value="low">🔵 低</option>
+      </select>
       <button type="submit" aria-label="追加">追加</button>
     </form>
+
+    <div class="filters" role="tablist">
+      <button class="filter active" data-filter="all">すべて</button>
+      <button class="filter filter-high" data-filter="high">高</button>
+      <button class="filter filter-medium" data-filter="medium">中</button>
+      <button class="filter filter-low" data-filter="low">低</button>
+    </div>
 
     <ul class="list" id="list"></ul>
 
@@ -33,6 +50,7 @@
 
     <footer class="app-footer" id="footer" hidden>
       <span id="count"></span>
+      <button id="clear-done" type="button">完了済みを削除</button>
     </footer>
   </main>
 
