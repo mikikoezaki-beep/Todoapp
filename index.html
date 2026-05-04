@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="シンプルなToDoアプリ">
+  <title>ToDo</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>✓</text></svg>">
+</head>
+<body>
+  <main class="app">
+    <header class="app-header">
+      <h1>ToDo</h1>
+      <p class="subtitle" id="subtitle"></p>
+    </header>
+
+    <form class="input-row" id="form">
+      <input
+        id="input"
+        type="text"
+        placeholder="やることを入力..."
+        maxlength="200"
+        autocomplete="off"
+        required
+      >
+      <button type="submit" aria-label="追加">追加</button>
+    </form>
+
+    <ul class="list" id="list"></ul>
+
+    <p class="empty" id="empty">タスクはまだありません</p>
+
+    <footer class="app-footer" id="footer" hidden>
+      <span id="count"></span>
+    </footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

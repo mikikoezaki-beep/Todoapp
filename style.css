@@ -1,0 +1,218 @@
+:root {
+  --bg: #fafaf9;
+  --surface: #ffffff;
+  --border: #ececec;
+  --text: #1c1c1e;
+  --text-mute: #8e8e93;
+  --accent: #1c1c1e;
+  --accent-hover: #000;
+  --done: #c7c7cc;
+  --danger: #ff3b30;
+  --shadow: 0 1px 3px rgba(0,0,0,0.04), 0 8px 30px rgba(0,0,0,0.05);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0d0d0f;
+    --surface: #18181b;
+    --border: #2a2a2e;
+    --text: #f5f5f7;
+    --text-mute: #8e8e93;
+    --accent: #f5f5f7;
+    --accent-hover: #fff;
+    --done: #4a4a4f;
+    --shadow: 0 1px 3px rgba(0,0,0,0.2), 0 8px 30px rgba(0,0,0,0.3);
+  }
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { -webkit-font-smoothing: antialiased; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Yu Gothic',
+               'Noto Sans JP', 'Segoe UI', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 4rem 1rem 2rem;
+  line-height: 1.6;
+}
+
+.app {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  width: 100%;
+  max-width: 480px;
+  padding: 2rem;
+}
+
+.app-header {
+  margin-bottom: 1.75rem;
+}
+
+h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.subtitle {
+  font-size: 0.85rem;
+  color: var(--text-mute);
+  margin-top: 0.2rem;
+}
+
+.input-row {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+}
+
+#input {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  font-size: 0.95rem;
+  font-family: inherit;
+  background: var(--bg);
+  color: var(--text);
+  outline: none;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+#input::placeholder { color: var(--text-mute); }
+
+#input:focus {
+  border-color: var(--accent);
+  background: var(--surface);
+}
+
+.input-row button {
+  background: var(--accent);
+  color: var(--surface);
+  border: none;
+  padding: 0 1.25rem;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.15s, transform 0.1s;
+}
+
+.input-row button:hover { background: var(--accent-hover); }
+.input-row button:active { transform: scale(0.97); }
+
+.list { list-style: none; }
+
+.list li {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.85rem 0;
+  border-bottom: 1px solid var(--border);
+  animation: fadeIn 0.2s ease;
+}
+
+.list li:last-child { border-bottom: none; }
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-2px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.checkbox {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 1.5px solid var(--text-mute);
+  border-radius: 50%;
+  cursor: pointer;
+  flex-shrink: 0;
+  position: relative;
+  transition: all 0.15s;
+}
+
+.checkbox:hover { border-color: var(--accent); }
+
+.checkbox:checked {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.checkbox:checked::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 5px;
+  height: 9px;
+  border: solid var(--surface);
+  border-width: 0 2px 2px 0;
+  transform: translate(-50%, -60%) rotate(45deg);
+}
+
+.text {
+  flex: 1;
+  font-size: 0.95rem;
+  word-break: break-word;
+  transition: color 0.2s;
+}
+
+.list li.done .text {
+  color: var(--done);
+  text-decoration: line-through;
+}
+
+.delete {
+  background: transparent;
+  border: none;
+  color: var(--text-mute);
+  cursor: pointer;
+  font-size: 1.3rem;
+  line-height: 1;
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: all 0.15s;
+  font-family: inherit;
+}
+
+.list li:hover .delete,
+.list li:focus-within .delete { opacity: 1; }
+
+.delete:hover { color: var(--danger); background: rgba(255,59,48,0.08); }
+
+.empty {
+  text-align: center;
+  padding: 2.5rem 1rem;
+  color: var(--text-mute);
+  font-size: 0.9rem;
+}
+
+.app-footer {
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border);
+  font-size: 0.8rem;
+  color: var(--text-mute);
+  text-align: center;
+}
+
+@media (max-width: 480px) {
+  body { padding: 2rem 1rem; }
+  .app { padding: 1.5rem; }
+  .delete { opacity: 1; }
+}
